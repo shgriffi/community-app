@@ -789,6 +789,279 @@ app.listen(PORT, () => {
 
 ---
 
+## 9. UI/UX Design & Styling
+
+**Decision**: Extend Griot and Grits website design language to mobile app
+
+**Rationale**:
+- Maintains brand consistency across web and mobile platforms
+- Leverages existing brand recognition and user familiarity
+- Honors the cultural storytelling mission through visual design
+- Creates cohesive user experience across all touchpoints
+
+**Design System Analysis** (from https://griotandgrits.org):
+
+**Color Palette**:
+- **Primary Colors**: Deep auburn/terracotta tones (#a94728, #8b3a1f)
+- **Accent Colors**: Warm red-browns for emphasis and calls-to-action
+- **Neutral Base**: High-contrast neutrals for readability
+- **Gradient Usage**: Warm gradients for buttons and highlights
+- **Dark Mode**: Dark theme with warm accent preservation
+
+**Typography**:
+- **Font Family**: Sans-serif with clean, modern aesthetics
+- **Text Rendering**: Antialiased for smooth readability on mobile
+- **Hierarchy**: Clear typographic scale (headings, body, captions)
+- **Tracking**: Tight letter-spacing for contemporary feel
+- **Accessibility**: High contrast ratios meeting WCAG AA standards
+
+**Component Styling**:
+- **Buttons**:
+  - Rounded corners with gradient backgrounds
+  - Hover/press states with subtle scale and shadow transitions
+  - Primary action: Warm gradient (matches "Donate Now" button)
+  - Secondary action: Outlined or ghost style
+- **Cards**: Clean, minimal design with subtle shadows
+- **Input Fields**: Simple borders with focus states using primary color
+- **Navigation**: Fixed top bar on mobile (collapsible)
+- **Bottom Tab Bar**: iOS/Android native patterns with primary color accents
+
+**Layout Patterns**:
+- **Grid System**: Responsive with clear visual hierarchy
+- **Spacing**: Generous padding for touch targets (minimum 44x44pt)
+- **Content Sections**: Clear separation with whitespace
+- **Image Treatment**: Photo collages and storytelling imagery
+- **Scrolling**: Smooth, native feel with pull-to-refresh
+
+**Brand Identity Elements**:
+- **Visual Motifs**:
+  - Photographic storytelling (overlapping images, collages)
+  - Cultural authenticity in imagery
+  - Historical photograph integration
+- **Iconography**: Simple, recognizable icons
+- **Transitions**: Soft, purposeful animations (avoid jarring)
+- **Loading States**: Skeleton screens with brand colors
+
+**Mobile-Specific Adaptations**:
+- **Touch Targets**: Minimum 44pt (iOS) / 48dp (Android)
+- **Gestures**: Swipe, pull-to-refresh, pinch-to-zoom (where appropriate)
+- **Status Bar**: Light content on dark backgrounds, dark content on light
+- **Safe Areas**: Respect iOS notch and Android navigation bars
+- **Haptic Feedback**: Subtle haptics for key interactions
+
+**Platform Guidelines Integration**:
+- **iOS**: Follow Human Interface Guidelines (HIG)
+  - Native navigation patterns
+  - SF Symbols where appropriate
+  - System fonts as fallback
+- **Android**: Follow Material Design 3
+  - Material You color adaptation
+  - Ripple effects on touch
+  - FAB for primary actions
+
+**Implementation Approach**:
+
+**React Native Styling Libraries**:
+```json
+{
+  "react-native-ui-lib": "^7.0.0",
+  "react-native-paper": "^5.11.0",
+  "react-native-vector-icons": "^10.0.0",
+  "@react-navigation/native": "^6.1.0",
+  "@react-navigation/bottom-tabs": "^6.5.0"
+}
+```
+
+**Design Tokens** (src/styles/tokens.ts):
+```typescript
+export const Colors = {
+  primary: {
+    main: '#a94728',
+    dark: '#8b3a1f',
+    light: '#c15a3a',
+  },
+  neutral: {
+    white: '#ffffff',
+    black: '#000000',
+    gray100: '#f5f5f5',
+    gray200: '#e5e5e5',
+    gray300: '#d4d4d4',
+    gray700: '#404040',
+    gray900: '#171717',
+  },
+  gradient: {
+    primary: ['#a94728', '#8b3a1f'],
+  },
+};
+
+export const Typography = {
+  fontFamily: {
+    regular: 'System',
+    medium: 'System',
+    bold: 'System',
+  },
+  fontSize: {
+    xs: 12,
+    sm: 14,
+    base: 16,
+    lg: 18,
+    xl: 20,
+    '2xl': 24,
+    '3xl': 30,
+    '4xl': 36,
+  },
+  lineHeight: {
+    tight: 1.25,
+    normal: 1.5,
+    relaxed: 1.75,
+  },
+};
+
+export const Spacing = {
+  xs: 4,
+  sm: 8,
+  md: 16,
+  lg: 24,
+  xl: 32,
+  '2xl': 48,
+};
+
+export const BorderRadius = {
+  sm: 4,
+  md: 8,
+  lg: 12,
+  xl: 16,
+  full: 9999,
+};
+
+export const Shadows = {
+  sm: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.18,
+    shadowRadius: 1.0,
+    elevation: 1,
+  },
+  md: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
+    elevation: 4,
+  },
+  lg: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.30,
+    shadowRadius: 4.65,
+    elevation: 8,
+  },
+};
+```
+
+**Themed Components** (src/components/common/):
+```typescript
+// Button.tsx
+import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import { Colors, Typography, BorderRadius, Spacing } from '@/styles/tokens';
+
+export const PrimaryButton = ({ onPress, children }) => (
+  <TouchableOpacity onPress={onPress} style={styles.button}>
+    <LinearGradient
+      colors={Colors.gradient.primary}
+      style={styles.gradient}
+    >
+      <Text style={styles.text}>{children}</Text>
+    </LinearGradient>
+  </TouchableOpacity>
+);
+
+const styles = StyleSheet.create({
+  button: {
+    borderRadius: BorderRadius.md,
+    overflow: 'hidden',
+  },
+  gradient: {
+    paddingVertical: Spacing.md,
+    paddingHorizontal: Spacing.lg,
+    alignItems: 'center',
+  },
+  text: {
+    color: Colors.neutral.white,
+    fontSize: Typography.fontSize.base,
+    fontWeight: '600',
+  },
+});
+```
+
+**Dark Mode Support**:
+```typescript
+// src/hooks/useColorScheme.ts
+import { useColorScheme as useRNColorScheme } from 'react-native';
+
+export const useTheme = () => {
+  const scheme = useRNColorScheme();
+
+  return {
+    isDark: scheme === 'dark',
+    colors: scheme === 'dark' ? DarkColors : LightColors,
+  };
+};
+
+const DarkColors = {
+  background: '#0a0a0a',
+  surface: '#171717',
+  text: '#ffffff',
+  textSecondary: '#a3a3a3',
+  primary: '#c15a3a', // Slightly lighter for dark mode
+};
+
+const LightColors = {
+  background: '#ffffff',
+  surface: '#f5f5f5',
+  text: '#171717',
+  textSecondary: '#737373',
+  primary: '#a94728',
+};
+```
+
+**Accessibility Features**:
+- **Dynamic Type**: Support iOS Dynamic Type and Android font scaling
+- **Color Contrast**: All text meets WCAG AA (4.5:1 normal, 3:1 large)
+- **Screen Readers**: VoiceOver (iOS) and TalkBack (Android) support
+- **Reduced Motion**: Respect system preference for reduced motion
+- **Focus Indicators**: Clear focus states for keyboard navigation
+
+**Alternatives Considered**:
+- **Styled Components**: ⚠️ Performance overhead in React Native, less common
+- **Tailwind CSS (Nativewind)**: ⚠️ Newer ecosystem, less mature for RN
+- **Custom Design System**: ❌ Time-intensive, reinventing solved problems
+- **Material Design Only**: ❌ Doesn't match Griot and Grits brand identity
+- **Pure iOS/Android Native**: ❌ Against cross-platform first principle
+
+**Packages**:
+```json
+{
+  "react-native-linear-gradient": "^2.8.3",
+  "react-native-ui-lib": "^7.0.0",
+  "react-native-vector-icons": "^10.0.0",
+  "@react-navigation/native": "^6.1.0",
+  "@react-navigation/bottom-tabs": "^6.5.0",
+  "react-native-paper": "^5.11.0"
+}
+```
+
+**Design Quality Gates**:
+- All components must use design tokens (no hard-coded colors/sizes)
+- Touch targets minimum 44pt iOS / 48dp Android
+- Color contrast meets WCAG AA
+- Dark mode support for all screens
+- Platform-specific adaptations where appropriate
+- Smooth 60 FPS animations and transitions
+
+---
+
 ## Summary of Decisions
 
 | Area | Decision | Key Reason |
@@ -801,6 +1074,7 @@ app.listen(PORT, () => {
 | E2E Testing | Detox | React Native optimization eliminates flakiness |
 | Backend API | REST with enhancements | Offline-first alignment, native file upload support |
 | Backend Mocking | MSW + JSON Server + Faker | Independent development, reliable testing, realistic network simulation |
+| UI/UX Design | Griot and Grits brand extension with design tokens | Brand consistency, cultural authenticity, accessibility |
 
 ## Total Additional Bundle Size
 

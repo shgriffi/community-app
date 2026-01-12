@@ -1,0 +1,24 @@
+## local.properties.example
+## Copy this file to local.properties and customize for your machine
+## local.properties is git-ignored and contains machine-specific configuration
+
+## Android SDK location
+## Gradle will usually auto-detect this from ANDROID_HOME or ANDROID_SDK_ROOT environment variables
+## Uncomment and set if you need to override:
+# sdk.dir=/Users/yourname/Library/Android/sdk
+# sdk.dir=C\:\\Users\\YourName\\AppData\\Local\\Android\\Sdk
+
+## Custom Java/JDK location (optional)
+## Only needed if Gradle can't auto-detect your Java installation
+## Uncomment and set to your JDK 17+ installation path:
+# org.gradle.java.home=/path/to/your/jdk-17
+# org.gradle.java.home=C\:\\Program Files\\Java\\jdk-17
+
+## React Native Architectures (optional override)
+## Uncomment to build for specific architectures only (faster builds):
+# reactNativeArchitectures=arm64-v8a,x86_64
+
+## Note: Use forward slashes or escaped backslashes on Windows
+## Example Windows paths:
+##   C:/Program Files/Java/jdk-17
+##   C\:\\Program Files\\Java\\jdk-17

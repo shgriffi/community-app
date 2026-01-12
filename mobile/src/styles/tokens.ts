@@ -6,76 +6,138 @@
  */
 
 export const Colors = {
-  primary: {
-    main: '#a94728',
-    dark: '#8b3a1f',
-    light: '#c15a3a',
-  },
-  neutral: {
-    white: '#ffffff',
-    black: '#000000',
-    gray100: '#f5f5f5',
-    gray200: '#e5e5e5',
-    gray300: '#d4d4d4',
-    gray400: '#a3a3a3',
-    gray500: '#737373',
-    gray600: '#525252',
-    gray700: '#404040',
-    gray800: '#262626',
-    gray900: '#171717',
-  },
-  gradient: {
-    primary: ['#a94728', '#8b3a1f'],
-  },
-  semantic: {
-    success: '#22c55e',
-    warning: '#f59e0b',
-    error: '#ef4444',
-    info: '#3b82f6',
-  },
-  dark: {
-    background: '#0a0a0a',
-    surface: '#171717',
-    text: '#ffffff',
-    textSecondary: '#a3a3a3',
-    primary: '#c15a3a',
-  },
-  light: {
-    background: '#ffffff',
-    surface: '#f5f5f5',
-    text: '#171717',
-    textSecondary: '#737373',
-    primary: '#a94728',
+  // Primary brand colors
+  primary: '#a94728',
+  primaryDark: '#8b3a1f',
+  primaryLight: '#c15a3a',
+
+  // Gradient colors
+  primaryGradientStart: '#a94728',
+  primaryGradientEnd: '#8b3a1f',
+
+  // Neutral colors
+  white: '#ffffff',
+  black: '#000000',
+  gray100: '#f5f5f5',
+  gray200: '#e5e5e5',
+  gray300: '#d4d4d4',
+  gray400: '#a3a3a3',
+  gray500: '#737373',
+  gray600: '#525252',
+  gray700: '#404040',
+  gray800: '#262626',
+  gray900: '#171717',
+
+  // Semantic colors
+  success: '#22c55e',
+  warning: '#f59e0b',
+  error: '#ef4444',
+  info: '#3b82f6',
+
+  // UI element colors (light theme)
+  background: '#ffffff',
+  surface: '#f5f5f5',
+  textPrimary: '#171717',
+  textSecondary: '#737373',
+  textOnPrimary: '#ffffff',
+  border: '#e5e5e5',
+  disabled: '#d4d4d4',
+
+  // Elevation shadows
+  elevation: {
+    small: {
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 1 },
+      shadowOpacity: 0.18,
+      shadowRadius: 1.0,
+      elevation: 1,
+    },
+    medium: {
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.23,
+      shadowRadius: 2.62,
+      elevation: 4,
+    },
+    large: {
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.30,
+      shadowRadius: 4.65,
+      elevation: 8,
+    },
   },
 };
 
 export const Typography = {
+  // Heading styles
+  h1: {
+    fontSize: 32,
+    fontWeight: '700' as const,
+    lineHeight: 40,
+  },
+  h2: {
+    fontSize: 28,
+    fontWeight: '700' as const,
+    lineHeight: 36,
+  },
+  h3: {
+    fontSize: 24,
+    fontWeight: '600' as const,
+    lineHeight: 32,
+  },
+  h4: {
+    fontSize: 20,
+    fontWeight: '600' as const,
+    lineHeight: 28,
+  },
+  h5: {
+    fontSize: 18,
+    fontWeight: '600' as const,
+    lineHeight: 24,
+  },
+
+  // Body text styles
+  body: {
+    fontSize: 16,
+    fontWeight: '400' as const,
+    lineHeight: 24,
+  },
+  bodyBold: {
+    fontSize: 16,
+    fontWeight: '600' as const,
+    lineHeight: 24,
+  },
+  bodySmall: {
+    fontSize: 14,
+    fontWeight: '400' as const,
+    lineHeight: 20,
+  },
+
+  // UI element styles
+  button: {
+    fontSize: 16,
+    fontWeight: '600' as const,
+    lineHeight: 24,
+    textTransform: 'uppercase' as const,
+    letterSpacing: 0.5,
+  },
+  caption: {
+    fontSize: 12,
+    fontWeight: '400' as const,
+    lineHeight: 16,
+  },
+  label: {
+    fontSize: 14,
+    fontWeight: '500' as const,
+    lineHeight: 20,
+  },
+
+  // Font families
   fontFamily: {
     regular: 'System',
     medium: 'System',
     bold: 'System',
-  },
-  fontSize: {
-    xs: 12,
-    sm: 14,
-    base: 16,
-    lg: 18,
-    xl: 20,
-    '2xl': 24,
-    '3xl': 30,
-    '4xl': 36,
-    '5xl': 48,
-  },
-  lineHeight: {
-    tight: 1.25,
-    normal: 1.5,
-    relaxed: 1.75,
-  },
-  fontWeight: {
-    normal: '400' as const,
-    medium: '500' as const,
-    semibold: '600' as const,
-    bold: '700' as const,
   },
 };
 
@@ -85,16 +147,16 @@ export const Spacing = {
   md: 16,
   lg: 24,
   xl: 32,
-  '2xl': 48,
-  '3xl': 64,
+  xxl: 48,
+  xxxl: 64,
 };
 
 export const BorderRadius = {
-  sm: 4,
-  md: 8,
-  lg: 12,
-  xl: 16,
-  '2xl': 24,
+  small: 4,
+  medium: 8,
+  large: 12,
+  xlarge: 16,
+  xxlarge: 24,
   full: 9999,
 };
 

@@ -4,6 +4,35 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 > **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
 
+## Prerequisites
+
+- **Node.js**: Version 20 or higher (specified in package.json)
+- **Java Development Kit (JDK)**: Version 17 or higher for Android builds
+- **Android Studio**: For Android development with Android SDK
+- **Xcode**: For iOS development (macOS only)
+
+## Initial Setup
+
+### 1. Install Dependencies
+
+```sh
+npm install
+```
+
+### 2. Configure Local Environment (Optional)
+
+If Gradle cannot auto-detect your Java installation, or you need custom SDK paths:
+
+```sh
+# Create a local.properties file from the template
+cp android/local.properties.example android/local.properties
+
+# Edit android/local.properties with your machine-specific paths
+# Example: org.gradle.java.home=/path/to/your/jdk-17
+```
+
+**Note**: The `local.properties` file is git-ignored and should never be committed.
+
 ## Step 1: Start Metro
 
 First, you will need to run **Metro**, the JavaScript build tool for React Native.

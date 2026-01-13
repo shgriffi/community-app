@@ -2,11 +2,13 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { HomeScreen } from '@/screens/home/HomeScreen';
+import { DebugScreen } from '@/screens/debug/DebugScreen';
 import { Logo } from '@/components/branding/Logo';
 import { Colors } from '@/styles/tokens';
 
 export type MainTabParamList = {
   Home: undefined;
+  Debug: undefined;
   Discovery: undefined;
   Family: undefined;
   Profile: undefined;
@@ -40,6 +42,17 @@ export const MainNavigator = () => {
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
             <Icon name="home" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Debug"
+        component={DebugScreen}
+        options={{
+          title: 'Debug',
+          tabBarLabel: 'Debug',
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="bug" size={size} color={color} />
           ),
         }}
       />
